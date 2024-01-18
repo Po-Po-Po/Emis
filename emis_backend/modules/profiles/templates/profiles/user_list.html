@@ -1,0 +1,42 @@
+{% extends "base_manager.html" %}
+{% load static %}
+{% load user_tags %}
+
+{% block content %}
+<div class="list_content">
+  <h1>
+    
+    {% if model == 'monitor' %}
+      Редактирование камер
+    {% endif %}
+      
+  </h1>
+  <div class="btn-panel">
+    <a href="/manager/{{model}}/add/" title="Добавить камеру" class="btn"><i class="fa fa-plus-circle" aria-hidden="true"></i>Добавить</a>
+  </div>
+  <table class="fixed_headers">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Действия</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for object in object_list %}
+      <tr>
+        <td>{{object.pk}}</td>
+        <td>{{object.get_full_name}}</td>
+        <td>{{object.phone}}</td>
+        <td class="td_action">
+          <a href="/manager/{{model}}/{{object.pk}}/edit/"><i class="fa fa-pencil-square-o" aria-hidden="true" title="Редактировать"></i></a>
+          <a href="/manager/{{model}}/{{object.pk}}/delete/"><i class="fa fa-trash" style="color: #e13931;" aria-hidden="true" title="Удалить"></i></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock content %}

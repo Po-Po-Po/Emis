@@ -1,0 +1,31 @@
+{% extends "base_manager.html" %}
+{% load static %}
+{% load user_tags  %}
+
+{% block content %}
+
+<div class="inner">
+  <div id="item_content">
+    {% csrf_token %}
+    <div class="tabs">
+      <h1>
+        {% if item != None %}
+        Редактирование: {{ item.name }}
+        {% else %}
+        Добавить файл
+        {% endif %}
+      </h1>
+      <input id="tab1" type="radio" name="tabs" checked>
+      <label for="tab1" class="tab-action" title="Основное">Основное</label>
+
+
+      <section id="content-tab1">
+        {% include "crm/form_item.html" %}
+      </section>
+
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

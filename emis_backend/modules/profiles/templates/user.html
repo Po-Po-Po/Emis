@@ -1,0 +1,12 @@
+{% extends "login.html" %}
+{% load staticfiles %}
+          
+{% block content %}
+<div class="wrap">
+    <div class="modalbox_form modal-form ">
+        {% block form-login %}
+
+        {% endblock form-login %}
+    </div> 
+</div>
+{% endblock content %}

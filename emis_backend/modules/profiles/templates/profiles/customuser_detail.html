@@ -1,0 +1,33 @@
+{% extends "base_manager.html" %}
+{% load static %}
+{% load user_tags  %}
+
+{% block content %}
+
+<div class="inner" >
+  <form action="/manager/{{model}}/{{pk}}/delete/?pop='True'" method="get" id="item_form_delete"></form>
+  <form action="{% if action == 'add' %}/manager/{{model}}/add/{% else %}{{ request.path }}{% endif %}"
+    method="post" id='item_form' enctype="multipart/form-data">
+
+    {% csrf_token %}
+    <div class="tabs" style="width: 100%;">
+      <h1>
+        {% if item != None %}
+        Редактирование: {{ item.name }}
+        {% else %}
+        Добавить объект
+        {% endif %}
+      </h1>
+      {% include "crm/btn_save.html" %}
+      <input id="tab1" type="radio" name="tabs" checked>
+      <label for="tab1" class="tab-action" title="Основное">Основное</label>
+
+      <section id="content-tab1">
+        {{ form.as_p }}
+      </section>
+
+    </div>
+  </form>
+</div>
+
+{% endblock content %}

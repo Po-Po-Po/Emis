@@ -1,0 +1,15 @@
+{% extends "login.html" %}
+{% block content %}
+    <div class="wrap">
+        {% block menu-left %}
+        {% endblock menu-left %}
+        <div class="login">
+            <form action="" method="post">
+                {% csrf_token %}
+                <h1>РЕГИСТРАЦИЯ</h1>
+                <input type="email" name="email" id="email" placeholder="E-MAIL">
+                <button type="submit" class="btn_green">зарегистрироваться</button>
+            </form>
+        </div>    
+    </div>
+{% endblock content %}

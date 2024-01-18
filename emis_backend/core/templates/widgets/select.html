@@ -1,0 +1,28 @@
+  <select name="{{ widget.name }}"  
+    {% include "django/forms/widgets/attrs.html" %}>{% for group_name, group_choices, group_index in widget.optgroups %}{% if group_name %}
+    <optgroup label="{{ group_name }}" >{% endif %}{% for option in group_choices %}
+      {% include option.template_name with widget=option %}{% endfor %}{% if group_name %}
+    </optgroup>{% endif %}{% endfor %}
+  </select>
+  <a href="#" class="pop_windows {{ widget.name }} {{ widget.name }}_edit" id="{{ widget.name }}_edit" data-model="{{ widget.name }}" style="color: #000; display: none;"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+  <a href="/manager/{{ widget.name }}/add/" class="pop_windows {{ widget.name }} {{ widget.name }}_add" id="{{ widget.name }}_add" style="color: #000;"><i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+<script>
+    function append_to_a(val, model)
+    {
+      console.log(val)
+        if (val.value){
+            $('a.'+ model +'_edit').css('display', 'block');
+            $('a.'+ model +'_edit').attr('href', '/manager/'+ model +'/'+ val.value +'/edit/');
+            $('select#id_{{ widget.name }}').removeClass('noselect')
+        } else {
+            $('a.'+ model +'_edit').css('display', 'none');
+            $('select#id_{{ widget.name }}').addClass('noselect')
+        }
+    }
+    $(document).ready(function () {
+      $('select#id_{{ widget.name }}').each(function(){
+        append_to_a(this, "{{ widget.name }}");
+      });
+    });
+
+</script>

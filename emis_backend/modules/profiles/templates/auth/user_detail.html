@@ -1,0 +1,43 @@
+{% extends "base_manager.html" %}
+{% load static %}
+{% load user_tags  %}
+
+{% block content %}
+
+<div class="inner">
+  <div id="item_content">
+    {% csrf_token %}
+    <div class="tabs">
+      <h1>
+        {% if item != None %}
+        Редактирование: {{ item.name }}
+        {% else %}
+        Добавить пользователя
+        {% endif %}
+      </h1>
+      <input id="tab1" type="radio" name="tabs" checked>
+      <label for="tab1" class="tab-action" title="Основное">Основное</label>
+
+
+      {% if pk %}
+      <input id="tab2" type="radio" name="tabs">
+      <label for="tab2" class="tab-action" title="Комнаты">Дополнительно</label>
+      {% endif %}
+
+
+
+      <section id="content-tab1">
+        {% include "crm/form_item.html" %}
+      </section>
+
+      {% if pk %}
+      <section id="content-tab2">
+
+      </section>
+      {% endif %}
+
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

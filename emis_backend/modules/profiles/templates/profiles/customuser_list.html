@@ -1,0 +1,55 @@
+{% extends "base_manager.html" %}
+{% load static %}
+{% load user_tags %}
+
+
+{% block content %}
+
+
+<div class="list_content">
+  <div class="btn-panel">
+    <a href="/manager/{{model}}/add/" title="Добавить пользователя" class="btn"><i class="fa fa-plus-circle"
+        aria-hidden="true"></i>Добавить</a>
+      <input type="text" name="search" placeholder="Поиск" form="search_form">
+  </div>
+  <div class="filters">
+      <input type="submit" class="btn" value="Фильтр" form="search_form">
+    <form action="/manager/entity/" method="get" id="search_form">
+
+    </form>
+  </div>
+  <div class="divTable blueTable">
+    <div class="divTableHeading">
+      <div class="divTableRow">
+        <div class="divTableHead" style="width: 50px">ИД</div>
+        <div class="divTableHead sort" style="width: 20%" onclick="sortBy('last_name')">ФИО
+            <i class="fa {% if request.GET.sort_order == 'desc' %}fa-caret-up{% else %}fa-caret-down{% endif %}"></i>
+        </div>
+        <div class="divTableHead" style="width: 10%">Email</div>
+          <div class="divTableHead" style="width: 10%">Телефон</div>
+          <div class="divTableHead" style="width: 10%">Персонал</div>
+          <div class="divTableHead" style="width: 50px">Статус</div>
+      </div>
+    </div>
+    <div class="divTableBody">
+      {% for object in object_list %}
+      <a class="divTableRow" href="/manager/{{model}}/{{object.pk}}/edit/">
+        <div class="divTableCell" style="width: 50px">{{object.pk}}</div>
+        <div class="divTableCell" style="width: 20%">{{object.get_full_name}}</div>
+        <div class="divTableCell" style="width: 10%">{{object.email}}</div>
+        <div class="divTableCell" style="width: 10%">{{object.phone}}</div>
+        <div class="divTableCell" style="width: 10%">{{object.personnel}}</div>
+        <div class="divTableCell" style="width: 50px; text-align: center;">
+          {% if object.is_active %}
+          <i class="fa fa-check-circle" aria-hidden="true"></i>
+          {% else %}
+          <i class="fa fa-ban" aria-hidden="true"></i>
+          {% endif %}
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<script type="text/javascript" src="{% static 'manager/js/sort.js' %}"></script>
+{% endblock content %}

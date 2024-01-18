@@ -1,0 +1,38 @@
+version: '3.5'
+services:
+  django:
+    image: &app gitlab.it-rs.ru:5005/emis/emis_backend:${TAG}
+    command: bash -c "python manage.py makemigrations --merge --noinput && python manage.py migrate && python manage.py collectstatic --noinput && daphne -b 0.0.0.0 core.asgi:channel_layer"
+    env_file: &envfile
+      - .env_development
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+      - EMAIL_ADMIN_CRM=${POSTGRES_HOST}
+      - EMAIL_BACKEND=${EMAIL_BACKEND}
+      - EMAIL_HOST_USER=${EMAIL_HOST_USER}
+      - EMAIL_HOST=${EMAIL_HOST}
+      - EMAIL_HOST_PASSWORD=${EMAIL_HOST_PASSWORD}
+      - EMAIL_PORT=${EMAIL_PORT}
+      - EMAIL_USE_SSL=${EMAIL_USE_SSL}
+      - DOMAIN=${DOMAIN}
+      - DEBUG=False
+    ports:
+      - "8025:8000"
+    volumes:
+      - files-store-nfs-development:/app/media
+      - static-files-nfs-development:/app/staticfiles
+
+volumes:
+  files-store-nfs-development:
+    driver_opts:
+      type: nfs
+      device: ":/mnt/data/files_development"
+      o: addr=172.17.5.2,rw
+  static-files-nfs-testing:
+    driver_opts:
+      type: nfs
+      device: ":/mnt/data/static_development"
+      o: addr=172.17.5.2,rw

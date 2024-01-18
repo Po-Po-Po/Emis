@@ -1,0 +1,5 @@
+include:
+  - project: 'it-resources/gitlab-ci'
+    ref: master
+    file:
+      - '/.gitlab-ci.yml'

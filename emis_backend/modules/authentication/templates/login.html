@@ -1,0 +1,51 @@
+{% extends "base_manager.html" %}
+
+
+  
+{% block menu %}
+  
+{% endblock menu %}
+
+{% block menu-top %}
+    
+{% endblock menu-top %}
+    
+{% block content-iframe %}
+{% block content %}
+    <div class="wrap left-120">
+        {% block logo %}
+            <div class="logo logo_login" style="background-image: url('/static/manager/img/logo_emis.svg');"></div>
+        {% endblock logo %}
+        {% block menu-left %}
+        {% endblock menu-left %}
+        {% block help-text %}
+            <p><br></p>
+        {% endblock help-text %}
+        
+            <div class="login">
+                {% block form-login %}
+                <form action="" method="post">
+                        {% csrf_token %}
+                        <h1>Авторизация</h1>
+                        {{form}}
+                        <div class="checkbox">
+                            <input type="checkbox" name="remember" id="remember">
+                            <label for="remember"></label>
+                            <p>Запомнить меня</p>
+                        </div>
+                        <button type="submit" class="btn_green">Войти</button>
+                    </form>
+                    <a href="/reset_password/" class="password-reset-link">восстановление пароля</a>
+                {% endblock form-login %}
+            </div>          
+        
+
+        {% block registry-newuser %}
+            <!-- <a href="/signup" class='newuser'>Регистрация нового пользователя</a>   -->
+        {% endblock registry-newuser %}  
+    </div>
+{% endblock content %}
+{% endblock content-iframe %}
+{% block logout %}
+    
+{% endblock logout %}

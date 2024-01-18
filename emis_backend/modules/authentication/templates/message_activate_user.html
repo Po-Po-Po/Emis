@@ -1,0 +1,26 @@
+{% extends "login.html" %}
+
+{% block form-login %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>АКТИВАЦИЯ</h1>
+        <ul>
+            <li>Администратору сайта отправленно сообщение о регистрации</li>
+            <li>После активации аккаунта администратором вы сможете продолжить работу</li>
+            <li>Телефон для связи с администратором: 89220153636</li>
+            <li><a href="mailto:pavel@it-rs.ru" style="color: black">pavel@it-rs.ru</a></li>
+        </ul>
+       
+    </form>
+{% endblock form-login %}
+{% block registry-newuser %}
+  
+{% endblock registry-newuser %}
+{% block help-text %}
+  
+{% endblock help-text %}
+
+{% block logout %}
+    
+{% endblock logout %}
+    

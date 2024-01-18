@@ -1,0 +1,7 @@
+<form action="/upload/add/22" method="POST" id="files-add-form" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="text" name="name" id="filename" placeholder="Название файла">
+    <input type="file" name="attachments" id="id_attachments">
+    <label for="id_attachments"><i class="fas fa-upload"></i><span id="filename">выбирете файлы</span> </label>
+    <button type="submit" form="files-add-form" class="post_upload">загрузить</button>
+</form>

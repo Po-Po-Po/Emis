@@ -1,0 +1,21 @@
+{% extends "login.html" %}
+
+{% block form-login %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <h1>Введите данные пользователя</h1>
+        <!-- <input type="email" name="email" id="email" placeholder="E-MAIL">
+        <button type="submit">зарегистрироваться</button> -->
+        {{form}}
+        <button type="submit" class="btn_green">сохранить</button>
+    </form>
+{% endblock form-login %}
+{% block registry-newuser %}
+  
+{% endblock registry-newuser %}
+{% block help-text %}
+  
+{% endblock help-text %}
+{% block logout %}
+    
+{% endblock logout %}
