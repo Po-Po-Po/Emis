@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  app:
+    image: gitlab.it-rs.ru:5005/emis/emis_frontend:${TAG}
+    command: ["npm", "run", "start"]
+    ports:
+      - "8025:3000"
+    environment:
+      - PUBLIC_API_URL=${PUBLIC_API_URL}
+      - NODE_ENV=${NODE_ENV}

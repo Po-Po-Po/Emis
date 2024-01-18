@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  nuxt:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        PUBLIC_API_URL: https://localhost:8000/api
+        NODE_ENV: development
+    image: gitlab.loglab.ru:5005/emis/emis-frontend:latest
+    command: ["npm", "run", "start"]
+    ports:
+      - "3000:3000"

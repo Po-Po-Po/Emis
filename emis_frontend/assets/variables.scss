@@ -1,0 +1,33 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+@import '~vuetify/src/styles/styles.sass';
+
+$material-light: map-merge($material-light, (
+  'background': var(--v-background-base, map-get($material-light, 'background')) !important,
+));
+$material-dark: map-merge($material-dark, (
+  'background': var(--v-background-base, map-get($material-dark, 'background')) !important,
+));
+
+$material-light: map-merge(
+  $material-light,
+  (
+    'text-fields': (
+      'filled': rgba(map-get($shades, 'black'), 0.06),
+      'filled-hover': rgba(map-get($shades, 'black'), 0.12),
+      'outlined': rgba(map-get($shades, 'black'), 0.38),
+      'outlined-disabled': rgba(map-get($shades, 'black'), 0.26),
+      'outlined-hover': rgba(map-get($shades, 'black'), 0.86)
+    ),
+    'text': (
+      'theme': map-get($shades, 'white'),
+      'primary': rgba(map-get($shades, 'black'), 0.87),
+      'secondary': rgba(map-get($shades, 'black'), 0.6),
+      'disabled': rgba(map-get($shades, 'black'), 0.38),
+      'link': map-get($blue, 'darken-2'),
+      'link-hover': map-get($grey, 'darken-3')
+    ),
+  )
+);

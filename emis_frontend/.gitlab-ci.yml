@@ -1,0 +1,9 @@
+include:
+  - project: 'it-resources/gitlab-ci'
+    ref: master
+    file:
+      - '/.gitlab-ci.yml'
+
+variables:
+  PUBLIC_API_URL: $PUBLIC_API_URL
+  NODE_ENV: $NODE_ENV
